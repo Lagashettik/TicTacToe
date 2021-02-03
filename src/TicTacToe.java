@@ -25,34 +25,45 @@ public class TicTacToe {
 
     void StartGame(){
         for(int i = 1; i < 10; i++){
+
             if(count % 2 == 0)
                 MakeMove(ComputerPlay);
             else
                 MakeMove(HumanPlay);
+            ShowBoard();
+            count++;
+
+            if(i == 9)
+                for(int j = 1; j < 10; j++)
+                    if(Board[j] == ' ')
+                        i--;
+
         }
     }
 
     void MakeMove(char id){
-        boolean itr = true;
+        boolean itr;
         int cell;
         if(id == HumanPlay) {
+            System.out.println("\nEnter Cell Number");
             do {
-                System.out.println("Enter Cell Number");
                 cell = scan.nextInt();
-                if (Board[cell] == ' ')
-                    System.out.println("Cell is free");
+                itr = true;
+                if (Board[cell] == ' '){
+                    Board[cell] = HumanPlay;
+                }
                 else {
                     itr = false;
-                    System.out.println("Cell is not Empty\nEnter other cell number");
+                    System.out.println("\nCell is not Empty\nEnter other cell number");
                 }
             }while (!itr);
         }
         else{
             do {
                 cell =(int) Math.floor(Math.random() * 10 ) % 9;
-
+                itr = true;
                 if (Board[cell] == ' ')
-                    System.out.println("Cell is free");
+                    Board[cell] = ComputerPlay;
                 else {
                     itr = false;
                 }
@@ -62,7 +73,7 @@ public class TicTacToe {
     }
 
     void ShowBoard(){
-        System.out.println(" | 1| 2| 3|");
+        System.out.println("\n | 1| 2| 3|");
         for(int i=1; i<10; i++){
             if(i == 1)
                 System.out.print(i+"|");
@@ -70,13 +81,12 @@ public class TicTacToe {
                 System.out.print("\n"+i+"|");
 
             System.out.print(" "+Board[i]+"|");
-
         }
+        System.out.println("\n");
     }
 
     public static void main(String[] args) {
     TicTacToe Game = new TicTacToe();
     Game.StartGame();
-    Game.ShowBoard();
     }
 }
