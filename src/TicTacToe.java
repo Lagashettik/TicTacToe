@@ -73,6 +73,7 @@ public class TicTacToe {
 
         }
     }
+
     public static void main(String[] args) {
     TicTacToe Game = new TicTacToe();
     Game.StartGame();
