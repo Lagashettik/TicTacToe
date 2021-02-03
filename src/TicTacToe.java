@@ -23,7 +23,20 @@ public class TicTacToe {
         Arrays.fill(Board,' ');
     }
 
+    void Toss(){
+        int Toss =(int) Math.floor(Math.random() * 10) % 2;
+        System.out.println("Tossing.....\n");
+        if(Toss == 0)
+            System.out.println("Computer win the Toss\nComputer makes First move");
+        else
+        {
+            System.out.println("You won the Toss\nYou make First move");
+            count++;
+        }
+    }
+
     void StartGame(){
+        Toss();
         for(int i = 1; i < 10; i++){
 
             if(count % 2 == 0)
